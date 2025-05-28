@@ -22,7 +22,7 @@ I'm a developer with a passion for learning and growing in the world of software
 
 ## 📫 How to reach me
 
-* [www.linkedin.com/in/cohen-dos-santos-imperial-40b821300]
-* [cohenimperial@gmail.com]
+* www.linkedin.com/in/cohen-dos-santos-imperial-40b821300
+* cohenimperial@gmail.com
 
 Thanks for visiting my profile!
