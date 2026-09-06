@@ -19,8 +19,8 @@
 ## 🧑‍💻 About me
 
 Backend developer working on data-intensive production systems, integrations and cloud
-infrastructure. I came from Python, Java and PHP and now build production backends in
-C# / .NET.
+infrastructure. I came from Python and PHP, build production backends in C# / .NET, and
+work on the JVM side in Java and Spring on an open-source energy data framework.
 
 I'm especially interested in combining traditional software engineering with AI-assisted
 workflows, retrieval systems and local language models. What keeps me curious is the part
@@ -85,19 +85,24 @@ failed backend degrades the answer instead of breaking the tool. Things I care a
 
 ## 🧩 Selected engineering topics
 
-**Backend systems** — C#, .NET, ASP.NET Core, EF Core, REST APIs, workers and schedulers.
+**Backend systems** — C#, .NET, ASP.NET Core and EF Core; Java 21, Spring Boot and Project
+Reactor on the JVM side. REST APIs, workers, schedulers and reactive streams.
 
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat&logo=csharp&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat&logo=dotnet&logoColor=white)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?style=flat&logo=dotnet&logoColor=white)
 ![EF Core](https://img.shields.io/badge/EF%20Core-512BD4?style=flat&logo=dotnet&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat&logo=springboot&logoColor=white)
 
-**Data and messaging** — SQL Server, InfluxDB, RabbitMQ, MQTT, data imports and time series.
+**Data and messaging** — SQL Server, PostgreSQL, InfluxDB, RabbitMQ, Kafka, MQTT, data
+imports and time series.
 
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?style=flat&logo=microsoftsqlserver&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white)
 ![InfluxDB](https://img.shields.io/badge/InfluxDB-22ADF6?style=flat&logo=influxdb&logoColor=white)
 ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-FF6600?style=flat&logo=rabbitmq&logoColor=white)
+![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-231F20?style=flat&logo=apachekafka&logoColor=white)
 ![MQTT](https://img.shields.io/badge/MQTT-660066?style=flat&logo=mqtt&logoColor=white)
 
 **Cloud and delivery** — Azure, Docker, GitHub Actions, CI/CD, monitoring and production
@@ -116,7 +121,18 @@ LLMs and AI agents.
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 ![Obsidian](https://img.shields.io/badge/Obsidian-7C3AED?style=flat&logo=obsidian&logoColor=white)
 
-## 🚀 Personal projects and experiments
+## 🚀 Projects and experiments
+
+**[EDDIE](https://github.com/eddie-energy/eddie)** *(open source)* — the European
+Distributed Data Infrastructure for Energy: a permission-based framework that gives energy
+companies a single way to reach metering data across ~13 national grid operators. I work on
+the German region connector — mapping provider data into CIM market documents
+([#2475](https://github.com/eddie-energy/eddie/pull/2475)), historical-data polling
+([#2347](https://github.com/eddie-energy/eddie/pull/2347)) and future-data polling
+([#2329](https://github.com/eddie-energy/eddie/pull/2329)). The interesting part is the
+outbound design: a connector never publishes to a topic itself, it just exposes a
+`Flux<Envelope>` and the framework fans it out to Kafka, REST and AMQP at once. Java 21,
+Spring Boot, Project Reactor, PostgreSQL, event sourcing over a transactional outbox.
 
 **[Video Downloader](https://github.com/PappenHeim10/videoDownloader)** — an asynchronous
 desktop app for downloading HLS streams. The interesting decision was separating the
@@ -177,7 +193,8 @@ make the smallest useful change and verify it against observable behaviour.
 An honest split between what I use in production and what I'm still learning:
 
 - **Using in production:** C# / .NET backends, EF Core, SQL Server, RabbitMQ, MQTT,
-  time-series data, Azure, Docker and CI/CD
+  time-series data, Azure, Docker and CI/CD; Java / Spring and Kafka-backed event streams
+  on the EDDIE side
 - **Currently learning:** Azure architecture and DevOps (AZ-204) and Azure SQL
   administration (DP-300), cloud and networking fundamentals in more depth, robust RAG and
   agent systems, retrieval evaluation and ranking, distributed systems and observability
