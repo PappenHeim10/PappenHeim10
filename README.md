@@ -42,8 +42,8 @@ persistence, APIs and production diagnostics.
   the tolerant-reader boundaries between them.
 - **Docker, Azure and CI/CD** — building, deploying and promoting services across
   integration, test and production environments.
-- **Migrations, technical analysis and production diagnostics** — tracing an observed
-  symptom back to the line of code or the row of data that caused it.
+- **Observability and production diagnostics** — dashboards, structured logging and
+  tracing an observed symptom back to the line of code or the row of data that caused it.
 
 ## 🤖 AI as an engineering tool
 
@@ -63,20 +63,24 @@ structured engineering workflows with verification built in.
 I'm exploring how BM25, embeddings and hybrid retrieval can give AI agents reliable access
 to project knowledge instead of relying on context windows alone.
 
-- BM25 and classic full-text search
-- Embedding-based semantic search
-- Hybrid retrieval combining lexical and vector scoring
-- Retrieval-Augmented Generation (RAG)
-- Chunking, metadata and ranking
+The system I actually use daily is a several-hundred-page engineering wiki behind a hybrid
+search: a lexical BM25 index and a vector index queried in parallel and fused by reciprocal
+rank, with a deliberate fallback cascade — hybrid, then lexical, then plain grep — so a
+failed backend degrades the answer instead of breaking the tool. Things I care about there:
+
+- BM25 and classic full-text search, embedding-based semantic search, and why the two find
+  different things
+- Hybrid fusion, chunking, metadata and ranking
+- Retrieval-Augmented Generation, and measuring it instead of eyeballing it
+- Latency budgets and failure semantics — a retrieval call should always return something
 - Local LLMs, personal knowledge systems and agent-assisted workflows
 
 ### AI infrastructure and experimentation
 
-- Local models and local-first setups
-- MCP servers and purpose-built tools instead of one general-purpose prompt
-- An agent control plane that coordinates specialised agents
-- An Obsidian vault as the knowledge base behind it all
-- Retrieval architecture with deliberate fallbacks — hybrid first, lexical as the safety net
+- Purpose-built MCP servers so an agent gets narrow, typed tools instead of one broad prompt
+- A controlled write path into the knowledge base — versioned, hashed, recoverable
+- Local models and local-first setups, with an agent control plane as the next step
+- Deterministic tooling before LLM reasoning, wherever a script can decide it
 - Evaluation over subjective prompt tweaking
 
 ## 🧩 Selected engineering topics
@@ -102,12 +106,14 @@ diagnostics.
 ![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat&logo=microsoftazure&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=flat&logo=githubactions&logoColor=white)
+![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat&logo=grafana&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white)
 
 **Search and AI** — Python, BM25, embeddings, vector search, hybrid retrieval, RAG, local
 LLMs and AI agents.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 ![Obsidian](https://img.shields.io/badge/Obsidian-7C3AED?style=flat&logo=obsidian&logoColor=white)
 
 ## 🚀 Personal projects and experiments
@@ -119,11 +125,19 @@ site-specific scraping from the download engine: a client adapter only has to re
 remuxing into MP4. Python, PySide6 and `qasync`, so the UI stays responsive while hundreds
 of segments are in flight.
 
-**Agent Control Plane / Vault Control** *(private, local-first)* — my own knowledge system
+**Vault Control & Agent Control Plane** *(private, local-first)* — my own knowledge system
 and the tooling around it. The problem: AI agents lose everything between sessions and
-re-derive the same context over and over. The approach is a controlled write path into an
-Obsidian vault plus hybrid retrieval (lexical + embeddings) over it, so an agent looks
-knowledge up instead of carrying it in a context window. Everything runs locally by design.
+re-derive the same context over and over. The answer is a controlled write path into an
+Obsidian vault — every change versioned, content-hashed and recoverable after a crash —
+plus hybrid retrieval over it, so an agent looks knowledge up instead of carrying it in a
+context window. Exposed to my tools as MCP servers. Everything runs locally by design.
+
+**Game engines and reverse engineering** *(private)* — where I go when I want to work close
+to the machine. A clean-room study of a 2000s fighting game's data format: the container
+cipher decoded from public community research only, a Kotlin pipeline that normalises the
+asset files into canonical JSON, and a C++17 engine model with a deterministic
+fixed-timestep tick loop under test (no original assets redistributed). Alongside it a 2D
+sidescroller in Godot / GDScript — the same problems, from the other end.
 
 **[Musikplayer](https://github.com/PappenHeim10/Musikplayer)** — a local-first desktop
 music player built with Electron: pick a folder, stream your tracks through a warm
@@ -140,6 +154,7 @@ engineering, curiosity and everyday usefulness.
 - ♟️ Chess — and learning systematically from my own games
 - 📚 Psychological manga and character-driven stories
 - 🎵 Music and local media libraries
+- 🎮 Game engines, from tick loops to binary asset formats
 - 🤖 Local AI models and personal automation
 - 🧠 Knowledge management, Obsidian and second-brain systems
 - 🏙️ An interest in flexible, location-independent ways of working
@@ -153,18 +168,19 @@ make the smallest useful change and verify it against observable behaviour.
 - Replace assumptions with measurements and tests
 - Prefer small, verifiable changes over large rewrites
 - Plan the failure case and the rollback, not just the happy path
-- Never take an AI result at face value — verify it like any other claim
+- A green step is not a passing test — check that the check actually ran
+- Never take an AI result at face value; verify it like any other claim
 - Document knowledge so it can still be found months later
 
 ## 📚 Current learning focus
 
 An honest split between what I use in production and what I'm still learning:
 
-- **Using in production:** C# / .NET backends, EF Core, RabbitMQ, MQTT, time-series data,
-  Azure, Docker and CI/CD
-- **Currently learning:** cloud and networking fundamentals in more depth, Azure
-  architecture and DevOps practices, robust RAG and agent systems, retrieval evaluation
-  and ranking, distributed systems and observability
+- **Using in production:** C# / .NET backends, EF Core, SQL Server, RabbitMQ, MQTT,
+  time-series data, Azure, Docker and CI/CD
+- **Currently learning:** Azure architecture and DevOps (AZ-204) and Azure SQL
+  administration (DP-300), cloud and networking fundamentals in more depth, robust RAG and
+  agent systems, retrieval evaluation and ranking, distributed systems and observability
 
 ## 📬 Contact
 
