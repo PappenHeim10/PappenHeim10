@@ -36,14 +36,16 @@ persistence, APIs and production diagnostics.
   migration up to the endpoint contract.
 - **Background workers and message queues** — job pipelines, consumers, retry and
   dead-letter behaviour, idempotency under multiple replicas.
+- **Event-driven services** — reactive streams, event sourcing over a transactional outbox,
+  and mapping provider data into a shared domain model other systems can consume.
 - **Telemetry and time-series data** — high-volume measurement data, aggregation,
   interpolation and the repair of broken series.
 - **Importers and external system integrations** — third-party APIs, device protocols and
   the tolerant-reader boundaries between them.
 - **Docker, Azure and CI/CD** — building, deploying and promoting services across
   integration, test and production environments.
-- **Observability and production diagnostics** — dashboards, structured logging and
-  tracing an observed symptom back to the line of code or the row of data that caused it.
+- **Observability and diagnostics** — dashboards, structured logging and tracing an
+  observed symptom back to the line of code or the row of data that caused it.
 
 ## 🤖 AI as an engineering tool
 
